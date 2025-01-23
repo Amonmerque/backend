@@ -15,10 +15,14 @@ def index(id=0):
 
 class AllMovies(Resource):
  def get(self):
-  movies = Movie.query.all()
-#   body = [movie.to_dict(rules=("-reviews.movie","-reviews.user","-cart_items.movie_cart","-cart_items.user_cart",)) for movie in movies]
-  body =""
-  return make_response(body, 200)
+#   movies = Movie.query.all()
+# #   body = [movie.to_dict(rules=("-reviews.movie","-reviews.user","-cart_items.movie_cart","-cart_items.user_cart",)) for movie in movies]
+#   body =""
+#   return make_response(body, 200)
+    # return 200
+    movies = Movie.query.all()
+    body = [movie.to_dict() for movie in movies]
+    return make_response(body, 200)
 
  def post(self):
   try:
@@ -44,5 +48,17 @@ class AllMovies(Resource):
   except:
    body = {"error": "New movie could not be created."}
    return make_response(body, 400)
+  
+def test():
+  new_movie = Movie(
+  name="CACA",
+  image="None",
+  year=1985,
+  director="ME",
+  description="BOSS",
+  price=1.0,
+  )
+  db.session.add(new_movie)
+  db.session.commit()
 
 api.add_resource(AllMovies, "/movies")
