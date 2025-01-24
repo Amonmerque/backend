@@ -1,6 +1,6 @@
 from flask import request, make_response, session
 from flask_restful import Resource
-
+from flask_cors import CORS, cross_origin
 from api import app, db, api, bcrypt
 from flask import render_template
 
@@ -10,6 +10,7 @@ from api.models import Movie
 # Views go here!
 @app.route("/")
 @app.route("/<int:id>")
+@cross_origin()
 def index(id=0):
  return render_template("index.html")
 
