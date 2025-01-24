@@ -14,6 +14,7 @@ from api.models import Movie
 def index(id=0):
  return render_template("index.html")
 
+@cross_origin()
 class AllMovies(Resource):
  
  @cross_origin()
