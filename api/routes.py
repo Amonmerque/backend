@@ -15,6 +15,8 @@ def index(id=0):
  return render_template("index.html")
 
 class AllMovies(Resource):
+ 
+ @cross_origin()
  def get(self):
 #   movies = Movie.query.all()
 # #   body = [movie.to_dict(rules=("-reviews.movie","-reviews.user","-cart_items.movie_cart","-cart_items.user_cart",)) for movie in movies]
@@ -24,7 +26,8 @@ class AllMovies(Resource):
     movies = Movie.query.all()
     body = [movie.to_dict() for movie in movies]
     return make_response(body, 200)
-
+ 
+ @cross_origin()
  def post(self):
   try:
    new_movie = Movie(
