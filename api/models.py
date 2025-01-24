@@ -39,3 +39,24 @@ class Movie(db.Model, SerializerMixin):
 )
   else:
    return value
+  
+class Users(db.Model):
+  __tablename__ = "movies"
+  id = db.Column(db.Integer, primary_key=True)
+  name = db.Column(db.String, unique=True)
+  image = db.Column(db.String, nullable=False)
+  year = db.Column(db.Integer, nullable=False)
+  director = db.Column(db.String, nullable=False)
+  description = db.Column(db.String, nullable=False)
+  price = db.Column(db.Float, nullable=False)
+
+  def __init__(self, name, image, year, director, description, price):
+    self.name = name
+    self.image = image
+    self.year = year
+    self.director = director
+    self.description = description
+    self.price = price
+
+  def __repr__(self):
+    return '<name %r>' % self.name
