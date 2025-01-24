@@ -13,6 +13,7 @@ cors = CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://neondb_owner:npg_0b5hXqkCUHtu@ep-old-mountain-a25cfcsg-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require"
 app.config['SECRET_KEY'] = "npg_0b5hXqkCUHtu"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 metadata = MetaData(
  naming_convention={
