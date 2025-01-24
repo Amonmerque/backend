@@ -5,7 +5,8 @@ from api import app, db, api, bcrypt
 from flask import render_template
 
 # from api.models import User, Movie, CartItem, Review
-from api.models import Movie, Users
+from api.models import Users
+# from api.models import Movie, Users
 
 # Views go here!
 @app.route("/")
@@ -15,7 +16,7 @@ def index(id=0):
  return render_template("index.html")
 
 @app.route("/movies")
-@cross_origin
+@cross_origin()
 def getMovies():
   users = Users.query.all()
   body = [user.to_dict() for user in users]
