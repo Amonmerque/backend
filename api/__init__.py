@@ -23,31 +23,9 @@ metadata = MetaData(
 
 db = SQLAlchemy(app, metadata=metadata)
 migrate = Migrate(app, db)
-
 bcrypt = Bcrypt(app)  
 
 # Instantiate REST API
 api = Api(app)
-
-# CORS(
-#  app,
-#  resources={
-#   r"/*": {
-#    "origins": "*",
-#    "methods": [
-#     "GET",
-#     "POST",
-#     "PUT",
-#     "PATCH",
-#     "DELETE",
-#     "OPTIONS",
-#    ],
-#    "allow_headers": [
-#     "Content-Type",
-#     "Authorization",
-#    ],
-#   }
-#  },
-# )
 
 from api import models, routes

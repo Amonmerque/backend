@@ -41,22 +41,16 @@ from api import db
 #    return value
   
 class Users(db.Model, SerializerMixin):
-  __tablename__ = "movies"
+  __tablename__ = "users"
   id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String, unique=True)
-  image = db.Column(db.String, nullable=False)
-  year = db.Column(db.Integer, nullable=False)
-  director = db.Column(db.String, nullable=False)
-  description = db.Column(db.String, nullable=False)
-  price = db.Column(db.Float, nullable=False)
+  nom = db.Column(db.String, nullable=False)
+  prenom = db.Column(db.String, nullable=False)
+  solde = db.Column(db.Integer, nullable=False)
 
-  def __init__(self, name, image, year, director, description, price):
-    self.name = name
-    self.image = image
-    self.year = year
-    self.director = director
-    self.description = description
-    self.price = price
+  def __init__(self, nom, prenom, solde):
+    self.nom = nom
+    self.prenom = prenom
+    self.solde = solde
 
   def __repr__(self):
-    return '<name %r>' % self.name
+    return '<nom %r>' % self.nom
