@@ -31,7 +31,8 @@ def user_create():
     d_nom=data['nom']
     d_prenom=data['prenom']
     d_solde=data['solde']
-    user = Users(nom=d_nom, prenom=d_prenom, solde=d_solde)
+    d_password=data['password']
+    user = Users(nom=d_nom, prenom=d_prenom, solde=d_solde, password=d_password)
     db.session.add(user)
     db.session.commit()
     return make_response(request_all_users(), 200)

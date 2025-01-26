@@ -46,11 +46,13 @@ class Users(db.Model, SerializerMixin):
   nom = db.Column(db.String, nullable=False)
   prenom = db.Column(db.String, nullable=False)
   solde = db.Column(db.Integer, nullable=False)
+  password = db.Column(db.String, nullable=True)
 
-  def __init__(self, nom, prenom, solde):
+  def __init__(self, nom, prenom, solde, password):
     self.nom = nom
     self.prenom = prenom
     self.solde = solde
+    self.password = password
 
   def __repr__(self):
     return '<nom %r>' % self.nom
