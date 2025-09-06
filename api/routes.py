@@ -47,8 +47,8 @@ def take_beer():
     d_id=data['id']
     d_nb=data['nb']
     user = Users.query.filter_by(id=d_id).first()
-    if user.solde >= d_nb * 2:
-      user.solde = user.solde-(d_nb * 2)
+    if user.solde >= d_nb * 2.5:
+      user.solde = user.solde-(d_nb * 2.5)
       db.session.commit()
       return {"solde": user.solde}, 200
     else:
@@ -62,8 +62,8 @@ def take_soda():
     d_id=data['id']
     d_nb=data['nb']
     user = Users.query.filter_by(id=d_id).first()
-    if user.solde >= 1 * d_nb:
-      user.solde = user.solde-(1 * d_nb)
+    if user.solde >= 2 * d_nb:
+      user.solde = user.solde-(2 * d_nb)
       db.session.commit()
       return {"solde": user.solde}, 200
     else:

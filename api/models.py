@@ -45,7 +45,7 @@ class Users(db.Model, SerializerMixin):
   id = db.Column(db.Integer, primary_key=True)
   nom = db.Column(db.String, nullable=False)
   prenom = db.Column(db.String, nullable=False)
-  solde = db.Column(db.Integer, nullable=False)
+  solde = db.Column(db.Float, nullable=False)
   password = db.Column(db.String, nullable=True)
 
   def __init__(self, nom, prenom, solde, password):
