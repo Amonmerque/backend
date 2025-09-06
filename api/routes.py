@@ -71,7 +71,7 @@ def take_soda():
 
 @app.route("/user/cafe", methods=["POST"])
 @cross_origin()
-def take_soda():
+def take_cafe():
   if request.method == "POST":
     data=request.get_json()
     d_id=data['id']
