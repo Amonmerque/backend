@@ -68,6 +68,21 @@ def take_soda():
       return {"solde": user.solde}, 200
     else:
       return {"error": "Error during soda"}, 400
+
+@app.route("/user/cafe", methods=["POST"])
+@cross_origin()
+def take_soda():
+  if request.method == "POST":
+    data=request.get_json()
+    d_id=data['id']
+    d_nb=data['nb']
+    user = Users.query.filter_by(id=d_id).first()
+    if user.solde >= 1 * d_nb:
+      user.solde = user.solde-(1 * d_nb)
+      db.session.commit()
+      return {"solde": user.solde}, 200
+    else:
+      return {"error": "Error during cafe"}, 400
     
 @app.route("/user/recharge", methods=["POST"])
 @cross_origin()
