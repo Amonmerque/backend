@@ -3,6 +3,7 @@ from flask_restful import Resource
 from flask_cors import CORS, cross_origin
 from api import app, db
 from flask import render_template
+from sqlalchemy import func
 
 from api.models import Users
 
@@ -22,6 +23,18 @@ def getUsers():
   users = Users.query.all()
   body = [user.to_dict() for user in users]
   return make_response(body, 200)
+
+@app.route("/filter", methods=["POST"])
+@cross_origin()
+def filterUsers():
+  if request.method == "POST":
+    data=request.get_json()
+    if data != None and data['prenom'] != None:
+      users = Users.query.filter(func.lower(Users.prenom).like(func.lower('%'+data['prenom']+'%'))).all()
+      body = [user.to_dict() for user in users]
+      return make_response(body, 200)
+    else:
+      return make_response(dict(), 404)
 
 @app.route("/user/create", methods=["POST"])
 @cross_origin()
