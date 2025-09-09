@@ -2,6 +2,7 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import validates
+from sqlalchemy import DateTime
 
 from api import db
 
@@ -56,3 +57,9 @@ class Users(db.Model, SerializerMixin):
 
   def __repr__(self):
     return '<nom %r>' % self.nom
+
+class ConsoLogs(db.Model, SerializerMixin):
+  __tablename__ = "conso_logs"
+  id = db.Column(db.Integer, primary_key=True)
+  date = db.Column(DateTime, nullable=False)
+  conso = db.Column(db.String, nullable=False)

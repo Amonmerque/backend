@@ -4,8 +4,9 @@ from flask_cors import CORS, cross_origin
 from api import app, db
 from flask import render_template
 from sqlalchemy import func
+from datetime import datetime
 
-from api.models import Users
+from api.models import Users, ConsoLogs
 
 def request_all_users():
   users = Users.query.all()
@@ -121,4 +122,15 @@ def delete_user():
     db.session.commit()
     return make_response(request_all_users(), 200)
 
-  
+@app.route("/conso/add", methods=["POST"])
+@cross_origin()
+def addConso():
+  if request.method == "POST":
+    data=request.get_json()
+    d_conso=data['conso']
+    conso = ConsoLogs(date=datetime.now(), conso=d_conso)
+    db.session.add(conso)
+    db.session.commit()
+    return make_response(dict(), 200)
+  else:
+    return make_response(dict(), 404)
